@@ -4,7 +4,7 @@ const symmetryClasses = [
     schoenflies: "Cs",
     order: "linear",
     supports: true,
-    form: "χ = a εxy + b εyz",
+    form: "C = a εxy + b εyz",
     note: "Linear pseudoscalar response is allowed for shear strains compatible with the single mirror.",
     exampleSpaceGroups: ["Pm", "Pc", "Cm", "Cc"]
   },
@@ -13,7 +13,7 @@ const symmetryClasses = [
     schoenflies: "C2v",
     order: "linear",
     supports: true,
-    form: "χ = a εxy",
+    form: "C = a εxy",
     note: "Two mirror constraints leave one independent linear shear coupling.",
     exampleSpaceGroups: ["Pmm2", "Cmc21", "Pna21"]
   },
@@ -22,7 +22,7 @@ const symmetryClasses = [
     schoenflies: "S4",
     order: "linear",
     supports: true,
-    form: "χ = a(εxx - εyy) + b εxy",
+    form: "C = a(εxx - εyy) + b εxy",
     note: "The improper fourfold axis permits two independent in-plane linear invariants.",
     exampleSpaceGroups: ["P-4", "I-4"]
   },
@@ -32,7 +32,7 @@ const symmetryClasses = [
     schoenflies: "D2d",
     order: "linear",
     supports: true,
-    form: "χ = a(εxx - εyy)",
+    form: "C = a(εxx - εyy)",
     note: "Uniaxial strain along x and y produces opposite handedness.",
     exampleSpaceGroups: ["I-42d", "P-42m", "P-4m2"]
   },
@@ -41,7 +41,7 @@ const symmetryClasses = [
     schoenflies: "C4v",
     order: "second",
     supports: true,
-    form: "χ = a(εxx - εyy)εxy",
+    form: "C = a(εxx - εyy)εxy",
     note: "The first nonzero piezochiral term is quadratic in strain.",
     exampleSpaceGroups: ["P4mm", "P4bm", "I4cm"]
   },
@@ -50,7 +50,7 @@ const symmetryClasses = [
     schoenflies: "C3v",
     order: "second",
     supports: true,
-    form: "χ = a[(εxx - εyy)εxz - 2εxyεyz]",
+    form: "C = a[(εxx - εyy)εxz - 2εxyεyz]",
     note: "Trigonal mirror symmetry removes the linear term but leaves a quadratic invariant.",
     exampleSpaceGroups: ["R3m", "P3m1", "P31m"]
   },
@@ -60,7 +60,7 @@ const symmetryClasses = [
     schoenflies: "D3h",
     order: "second",
     supports: true,
-    form: "χ = a[(εxx - εyy)εxz - 2εxyεyz]",
+    form: "C = a[(εxx - εyy)εxz - 2εxyεyz]",
     note: "The leading response is second order; layered GaSe-type materials fall here.",
     exampleSpaceGroups: ["P-6m2", "P-62m"]
   },
@@ -69,7 +69,7 @@ const symmetryClasses = [
     schoenflies: "C3h",
     order: "second",
     supports: true,
-    form: "χ = a[(εxx - εyy)εxz - 2εxyεyz] + b[(εxx - εyy)εyz + 2εxyεxz]",
+    form: "C = a[(εxx - εyy)εxz - 2εxyεyz] + b[(εxx - εyy)εyz + 2εxyεxz]",
     note: "Two independent quadratic invariants are symmetry allowed.",
     exampleSpaceGroups: ["P-6"]
   },
@@ -79,7 +79,7 @@ const symmetryClasses = [
     schoenflies: "Td",
     order: "third",
     supports: true,
-    form: "χ = a(εxx - εyy)(εyy - εzz)(εzz - εxx) + b[(εxx - εyy)εyz² + (εyy - εzz)εxz² + (εzz - εxx)εxy²]",
+    form: "C = a(εxx - εyy)(εyy - εzz)(εzz - εxx) + b[(εxx - εyy)εyz² + (εyy - εzz)εxz² + (εzz - εxx)εxy²]",
     note: "Cubic tetrahedral symmetry pushes the leading piezochiral response to third order.",
     exampleSpaceGroups: ["F-43m", "I-43m", "P-43m"]
   },
@@ -88,7 +88,7 @@ const symmetryClasses = [
     schoenflies: "C6v",
     order: "third",
     supports: true,
-    form: "χ = a[εxy(εxz² - εyz²) + εxzεyz(εxx - εyy)] + b[εxy(3εxx² + 3εyy² - 6εxxεyy - 4εxy²)]",
+    form: "C = a[εxy(εxz² - εyz²) + εxzεyz(εxx - εyy)] + b[εxy(3εxx² + 3εyy² - 6εxxεyy - 4εxy²)]",
     note: "Hexagonal polar symmetry allows chirality only through third-order strain combinations.",
     exampleSpaceGroups: ["P63mc", "P6mm"]
   }
@@ -447,7 +447,7 @@ const materials = [
     spaceGroup: "I-42d",
     order: "linear",
     evidence: "experiment",
-    tensor: "χ = a(εxx - εyy)",
+    tensor: "C = a(εxx - εyy)",
     chiralSite: "S(8d)",
     note: "Prototype system from SI Table S13; strain-induced optical activity is experimentally confirmed."
   },
@@ -458,7 +458,7 @@ const materials = [
     spaceGroup: "I-42d",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy)",
+    tensor: "C = a(εxx - εyy)",
     chiralSite: "O(8d)",
     note: "Listed in SI Table S13 with locally chiral oxygen sites."
   },
@@ -469,7 +469,7 @@ const materials = [
     spaceGroup: "I-42d",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy)",
+    tensor: "C = a(εxx - εyy)",
     chiralSite: "H(8d), O(16e)",
     note: "Listed in SI Table S13 with locally chiral hydrogen and oxygen sites."
   },
@@ -480,7 +480,7 @@ const materials = [
     spaceGroup: "I-42d",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy)",
+    tensor: "C = a(εxx - εyy)",
     chiralSite: "P(8d)",
     note: "Listed in SI Table S13 with locally chiral phosphorus sites."
   },
@@ -491,7 +491,7 @@ const materials = [
     spaceGroup: "Pna21",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy",
+    tensor: "C = a εxy",
     chiralSite: "Li(4a), B(4a), O(4a)",
     note: "Listed in SI Table S13 with locally chiral Li, B, and O sites."
   },
@@ -502,7 +502,7 @@ const materials = [
     spaceGroup: "Pna21",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy",
+    tensor: "C = a εxy",
     chiralSite: "K(4a), Ti(4a), P(4a), O(4a)",
     note: "Listed in SI Table S13 with locally chiral K, Ti, P, and O sites."
   },
@@ -513,7 +513,7 @@ const materials = [
     spaceGroup: "Aem2",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy",
+    tensor: "C = a εxy",
     chiralSite: "O(4b), Bi(8d), Se(8d), O(8d)",
     note: "Listed in SI Table S13 with locally chiral O, Bi, and Se sites."
   },
@@ -524,7 +524,7 @@ const materials = [
     spaceGroup: "Pmn21",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy",
+    tensor: "C = a εxy",
     chiralSite: "B(4b), O(4b)",
     note: "Listed in SI Table S13 with locally chiral boron and oxygen sites."
   },
@@ -535,7 +535,7 @@ const materials = [
     spaceGroup: "I-4",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy) + b εxy",
+    tensor: "C = a(εxx - εyy) + b εxy",
     chiralSite: "O(8g)",
     note: "Listed in SI Table S13 with locally chiral oxygen sites."
   },
@@ -546,7 +546,7 @@ const materials = [
     spaceGroup: "I-4",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy) + b εxy",
+    tensor: "C = a(εxx - εyy) + b εxy",
     chiralSite: "S(8g)",
     note: "Listed in SI Table S13 with locally chiral sulfur sites."
   },
@@ -557,7 +557,7 @@ const materials = [
     spaceGroup: "P-4",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy) + b εxy",
+    tensor: "C = a(εxx - εyy) + b εxy",
     chiralSite: "I(2g), I(4h), O(4h)",
     note: "Listed in SI Table S13 with locally chiral iodine and oxygen sites."
   },
@@ -568,7 +568,7 @@ const materials = [
     spaceGroup: "I-4",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a(εxx - εyy) + b εxy",
+    tensor: "C = a(εxx - εyy) + b εxy",
     chiralSite: "As(8g), F(8g)",
     note: "Listed in SI Table S13 with locally chiral arsenic and fluorine sites."
   },
@@ -579,7 +579,7 @@ const materials = [
     spaceGroup: "Pc",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy + b εyz",
+    tensor: "C = a εxy + b εyz",
     chiralSite: "Cd(2a), Al(2a), Cl(2a)",
     note: "Listed in SI Table S13 with locally chiral Cd, Al, and Cl sites."
   },
@@ -590,7 +590,7 @@ const materials = [
     spaceGroup: "Cc",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy + b εyz",
+    tensor: "C = a εxy + b εyz",
     chiralSite: "Sn(4a), Ta(4a), O(4a)",
     note: "Listed in SI Table S13 with locally chiral Sn, Ta, and O sites."
   },
@@ -601,7 +601,7 @@ const materials = [
     spaceGroup: "Cc",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy + b εyz",
+    tensor: "C = a εxy + b εyz",
     chiralSite: "Te(4a), P(4a), O(4a)",
     note: "Listed in SI Table S13 with locally chiral Te, P, and O sites."
   },
@@ -612,7 +612,7 @@ const materials = [
     spaceGroup: "Pc",
     order: "linear",
     evidence: "symmetry",
-    tensor: "χ = a εxy + b εyz",
+    tensor: "C = a εxy + b εyz",
     chiralSite: "As(2a), O(2a), S(2a)",
     note: "Listed in SI Table S13 with locally chiral As, O, and S sites."
   }
@@ -691,6 +691,7 @@ const lookupResult = document.querySelector("#lookupResult");
 const materialRows = document.querySelector("#materialRows");
 const orderFilter = document.querySelector("#orderFilter");
 const evidenceFilter = document.querySelector("#evidenceFilter");
+const chiralityFilter = document.querySelector("#chiralityFilter");
 const pointGroupSelect = document.querySelector("#pointGroupSelect");
 const spaceGroupSelect = document.querySelector("#spaceGroupSelect");
 const activeGroupFilter = document.querySelector("#activeGroupFilter");
@@ -773,6 +774,19 @@ function classificationLabel(entry) {
   if (entry.category === "linear") return "Linear piezochiral";
   if (entry.category === "higher") return "Higher-order piezochiral";
   return "Unclassified";
+}
+
+function staticChiralityLabel(entry) {
+  return entry.category === "chiral" ? "Yes" : "No";
+}
+
+function materialStaticChirality(item) {
+  const entry = symmetryClasses.find((group) => group.pointGroup === item.pointGroup);
+  return entry?.category === "chiral" ? "chiral" : "nonchiral";
+}
+
+function materialStaticChiralityLabel(item) {
+  return materialStaticChirality(item) === "chiral" ? "Yes" : "No";
 }
 
 function evidenceLabel(evidence) {
@@ -862,13 +876,14 @@ function renderLookup(query, options = {}) {
       </div>
       <span class="badge ${badgeClass(entry)}">${responseLabel(entry.order)}</span>
     </div>
+    <div class="coupling-label">Piezochiral coupling form</div>
     <div class="tensor-form">${entry.form}</div>
     <div class="detail-grid">
       <div class="detail"><span>Point group</span><strong>${entry.pointGroup}</strong></div>
-      <div class="detail"><span>Class</span><strong>${classificationLabel(entry)}</strong></div>
       <div class="detail"><span>Crystal system</span><strong>${entry.crystalSystem}</strong></div>
+      <div class="detail"><span>Chiral statically</span><strong>${staticChiralityLabel(entry)}</strong></div>
+      <div class="detail"><span>Class</span><strong>${classificationLabel(entry)}</strong></div>
       <div class="detail"><span>Piezochiral coupling order</span><strong>${couplingOrderLabel(entry.order)}</strong></div>
-      <div class="detail"><span>Piezochiral</span><strong>${entry.supports ? "Supported" : "Not supported"}</strong></div>
       <div class="detail"><span>Materials</span><strong>${relatedMaterials.length}</strong></div>
     </div>
   `;
@@ -879,15 +894,17 @@ function renderLookup(query, options = {}) {
 function renderMaterials() {
   const order = orderFilter.value;
   const evidence = evidenceFilter.value;
+  const chirality = chiralityFilter.value;
   const visible = materials.filter((item) => {
     const orderMatches = order === "all"
       || item.order === order
       || (order === "linear" && item.order === "linear-chiral");
     const evidenceMatches = evidence === "all" || item.evidence === evidence;
+    const chiralityMatches = chirality === "all" || materialStaticChirality(item) === chirality;
     const groupMatches = !groupFilter
       || (groupFilter.type === "point" && item.pointGroup === groupFilter.value)
       || (groupFilter.type === "space" && normalize(item.spaceGroup) === groupFilter.value);
-    return orderMatches && evidenceMatches && groupMatches;
+    return orderMatches && evidenceMatches && chiralityMatches && groupMatches;
   });
 
   const pageCount = Math.max(1, Math.ceil(visible.length / rowsPerPage));
@@ -903,13 +920,14 @@ function renderMaterials() {
       <td>${item.formula}</td>
       <td>${item.pointGroup}</td>
       <td>${item.spaceGroup}</td>
+      <td>${materialStaticChiralityLabel(item)}</td>
       <td>${responseLabel(item.order)}</td>
       <td>${item.tensor}</td>
       <td><span class="badge neutral">${evidenceLabel(item.evidence)}</span></td>
     </tr>
   `).join("") : `
     <tr>
-      <td colspan="6" class="empty-row">No SI material records match this group yet.</td>
+      <td colspan="7" class="empty-row">No material records match these filters yet.</td>
     </tr>
   `;
   renderPagination(pageCount);
@@ -935,6 +953,20 @@ function renderPagination(pageCount) {
     <button type="button" data-page="${currentPage - 1}" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
     ${pageButtons}
     <button type="button" data-page="${currentPage + 1}" ${currentPage === pageCount ? "disabled" : ""}>Next</button>
+    <form class="page-jump" id="pageJumpForm">
+      <label for="pageJumpInput">Page</label>
+      <input
+        id="pageJumpInput"
+        name="page"
+        type="number"
+        min="1"
+        max="${pageCount}"
+        value="${currentPage}"
+        inputmode="numeric"
+      />
+      <span>of ${pageCount}</span>
+      <button type="submit">Go</button>
+    </form>
   `;
 }
 
@@ -1054,12 +1086,30 @@ pagination.addEventListener("click", (event) => {
   renderMaterials();
 });
 
+pagination.addEventListener("submit", (event) => {
+  const form = event.target.closest("#pageJumpForm");
+  if (!form) return;
+  event.preventDefault();
+  const input = form.querySelector("#pageJumpInput");
+  const page = Number(input.value);
+  const min = Number(input.min);
+  const max = Number(input.max);
+  if (!Number.isFinite(page)) return;
+  currentPage = Math.min(Math.max(page, min), max);
+  renderMaterials();
+});
+
 orderFilter.addEventListener("change", () => {
   currentPage = 1;
   renderMaterials();
 });
 
 evidenceFilter.addEventListener("change", () => {
+  currentPage = 1;
+  renderMaterials();
+});
+
+chiralityFilter.addEventListener("change", () => {
   currentPage = 1;
   renderMaterials();
 });

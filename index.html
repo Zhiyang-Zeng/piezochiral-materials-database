@@ -9,8 +9,9 @@
   <body>
     <header class="topbar">
       <div>
-        <p class="eyebrow">Exploring the piezochiral universe</p>
+        <p class="eyebrow">The home of piezochirality</p>
         <h1>PiezoChiral Materials Database</h1>
+        <p class="site-subtitle">Open database of piezochiral materials, symmetry classifications, and piezochiral tensors.</p>
       </div>
       <div class="status-pill" id="materialStatus">0 piezochiral materials documented</div>
     </header>
@@ -20,8 +21,8 @@
         <div class="search-copy">
           <h2 id="search-title">Search by point group, space group, or material</h2>
           <p>
-            Check whether a crystallographic group supports a piezochiral response,
-            then inspect the allowed coupling form and matching materials.
+            Explore whether a crystallographic group supports coupling between strain and chirality,
+            and discover its coupling forms and corresponding materials.
           </p>
         </div>
         <form class="search-panel" id="searchForm">
@@ -97,6 +98,14 @@
               <option value="symmetry">Symmetry-based</option>
             </select>
           </label>
+          <label>
+            Static chirality
+            <select id="chiralityFilter">
+              <option value="all">All</option>
+              <option value="chiral">Chiral statically</option>
+              <option value="nonchiral">Nonchiral statically</option>
+            </select>
+          </label>
         </div>
       </section>
 
@@ -107,6 +116,7 @@
               <th>Material</th>
               <th>Point group</th>
               <th>Space group</th>
+              <th>Static chirality</th>
               <th>Response</th>
               <th>Leading order coupling form</th>
               <th>Classification basis</th>
@@ -155,6 +165,6 @@
     </main>
 
     <script src="mp-materials.js"></script>
-    <script src="app.js?v=25rows"></script>
+    <script src="app.js?v=static-chirality"></script>
   </body>
 </html>

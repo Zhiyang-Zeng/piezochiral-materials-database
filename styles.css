@@ -62,6 +62,14 @@ h1 {
   line-height: 1.05;
 }
 
+.site-subtitle {
+  max-width: 720px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
 h2 {
   margin-bottom: 8px;
   font-size: 1.05rem;
@@ -245,8 +253,17 @@ button:hover {
   color: #475467;
 }
 
+.coupling-label {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .tensor-form {
-  margin: 16px 0;
+  margin: 8px 0 16px;
   padding: 16px;
   border-left: 4px solid var(--accent-2);
   background: #fff7fb;
@@ -365,6 +382,23 @@ button:hover {
 .pagination button:disabled {
   cursor: not-allowed;
   opacity: 0.48;
+}
+
+.page-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.page-jump input {
+  width: 72px;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 8px;
+  color: var(--ink);
 }
 
 .page-gap {
