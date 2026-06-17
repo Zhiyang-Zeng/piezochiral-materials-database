@@ -30,7 +30,7 @@ If you use this database, its classifications, or any derived datasets in your r
 
 ```bibtex
 @article{Zeng2025Piezochiral,
-  author = {Zeng, Zhiyang and Först, Michael and Fechner, Martin and Deng, Xiaoyu and Cavalleri, Andrea and Radaelli, Paolo G.},
+  author = {Zeng, Zhiyang and Först, Michael and Fechner, Michael and Deng, Xiaoxi and Cavalleri, Andrea and Radaelli, Paolo G.},
   title = {The Piezochiral Effect},
   year = {2025},
   doi = {10.48550/arXiv.2510.21674}
