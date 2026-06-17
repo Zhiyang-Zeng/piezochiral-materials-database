@@ -876,12 +876,12 @@ function renderLookup(query, options = {}) {
       </div>
       <span class="badge ${badgeClass(entry)}">${responseLabel(entry.order)}</span>
     </div>
-    <div class="coupling-label">Piezochiral coupling form</div>
+    <div class="coupling-label">Leading piezochiral coupling form</div>
     <div class="tensor-form">${entry.form}</div>
     <div class="detail-grid">
       <div class="detail"><span>Point group</span><strong>${entry.pointGroup}</strong></div>
       <div class="detail"><span>Crystal system</span><strong>${entry.crystalSystem}</strong></div>
-      <div class="detail"><span>Chiral statically</span><strong>${staticChiralityLabel(entry)}</strong></div>
+      <div class="detail"><span>Statically chiral</span><strong>${staticChiralityLabel(entry)}</strong></div>
       <div class="detail"><span>Class</span><strong>${classificationLabel(entry)}</strong></div>
       <div class="detail"><span>Piezochiral coupling order</span><strong>${couplingOrderLabel(entry.order)}</strong></div>
       <div class="detail"><span>Materials</span><strong>${relatedMaterials.length}</strong></div>

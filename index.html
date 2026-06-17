@@ -26,7 +26,7 @@
           </p>
         </div>
         <form class="search-panel" id="searchForm">
-          <label for="query">Crystal point group, space group, or formula</label>
+          <label for="query">Crystal point group, space group, or chemical formula</label>
           <div class="search-row">
             <input
               id="query"
@@ -102,8 +102,8 @@
             Static chirality
             <select id="chiralityFilter">
               <option value="all">All</option>
-              <option value="chiral">Chiral statically</option>
-              <option value="nonchiral">Nonchiral statically</option>
+              <option value="chiral">Statically chiral</option>
+              <option value="nonchiral">Statically nonchiral</option>
             </select>
           </label>
         </div>
@@ -117,7 +117,7 @@
               <th>Point group</th>
               <th>Space group</th>
               <th>Static chirality</th>
-              <th>Response</th>
+              <th>Piezochiral response</th>
               <th>Leading order coupling form</th>
               <th>Classification basis</th>
             </tr>
@@ -130,8 +130,8 @@
       <section class="reference-band">
         <h2>32 Point Group Classification</h2>
         <p>
-          Full crystallographic point-group map classified as linear piezochiral,
-          non-piezochiral, or higher-order piezochiral.
+          Classification of all 32 crystallographic point groups according to their
+          symmetry-allowed piezochiral response.
         </p>
         <div class="class-legend" aria-label="Classification legend">
           <span class="legend-item linear">Linear piezochiral</span>
@@ -156,6 +156,13 @@
             </a>
           </p>
           <p>Please cite this work when using data or classifications from this database.</p>
+          <figure class="citation-figure">
+            <img
+              src="assets/figure-piezochiral-800px.png"
+              alt="Six researchers gathered around a glowing chest representing piezochirality"
+            />
+            <figcaption>The Six Apostles of Piezochirality</figcaption>
+          </figure>
         </div>
         <span>Materials data sourced from</span>
         <a href="https://materialsproject.org/" target="_blank" rel="noopener noreferrer">
