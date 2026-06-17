@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PiezoChiral Materials Database</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Exploring the piezochiral universe</p>
+        <h1>PiezoChiral Materials Database</h1>
+      </div>
+      <div class="status-pill" id="materialStatus">0 piezochiral materials documented</div>
+    </header>
+
+    <main>
+      <section class="search-band" aria-labelledby="search-title">
+        <div class="search-copy">
+          <h2 id="search-title">Search by point group, space group, or material</h2>
+          <p>
+            Check whether a crystallographic group supports a piezochiral response,
+            then inspect the allowed coupling form and matching materials.
+          </p>
+        </div>
+        <form class="search-panel" id="searchForm">
+          <label for="query">Crystal point group, space group, or formula</label>
+          <div class="search-row">
+            <input
+              id="query"
+              name="query"
+              type="search"
+              autocomplete="off"
+              placeholder="Try 222, -42m, 432, I-42d, AgGaS2"
+            />
+            <button type="submit" aria-label="Run search">
+              <span aria-hidden="true">⌕</span>
+              Search
+            </button>
+          </div>
+          <div class="picker-links">
+            <button type="button" data-picker="point">Choose from point groups</button>
+            <button type="button" data-picker="space">Choose from space groups</button>
+          </div>
+          <div class="picker-panel" id="pointPicker" hidden>
+            <label>
+              Point group list
+              <select id="pointGroupSelect"></select>
+            </label>
+          </div>
+          <div class="picker-panel" id="spacePicker" hidden>
+            <label>
+              Space group list
+              <select id="spaceGroupSelect"></select>
+            </label>
+          </div>
+          <div class="quick-chips" aria-label="Example searches">
+            <button type="button" data-query="-42m">-42m</button>
+            <button type="button" data-query="4mm">4mm</button>
+            <button type="button" data-query="432">432</button>
+            <button type="button" data-query="mmm">mmm</button>
+            <button type="button" data-query="F-43m">F-43m</button>
+            <button type="button" data-query="AgGaS2">AgGaS2</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="result-layout">
+        <article class="result-panel" id="lookupResult" aria-live="polite"></article>
+        <aside class="tensor-panel">
+          <img id="stereogramImage" alt="Stereographic projection of point-group symmetry" />
+        </aside>
+      </section>
+
+      <section class="toolbar" aria-label="Database filters">
+        <div>
+          <h2>Material Database</h2>
+          <p id="tableMeta">Material records from the Supplementary Information local chiral-site analysis.</p>
+          <div class="active-filter" id="activeGroupFilter" hidden></div>
+        </div>
+        <div class="filters">
+          <label>
+            Response order
+            <select id="orderFilter">
+              <option value="all">All</option>
+              <option value="linear">Linear</option>
+              <option value="second">Second order</option>
+              <option value="third">Third order</option>
+            </select>
+          </label>
+          <label>
+            Classification basis
+            <select id="evidenceFilter">
+              <option value="all">All</option>
+              <option value="experiment">Experimentally confirmed</option>
+              <option value="symmetry">Symmetry-based</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="table-wrap" aria-label="Piezochiral materials">
+        <table>
+          <thead>
+            <tr>
+              <th>Material</th>
+              <th>Point group</th>
+              <th>Space group</th>
+              <th>Response</th>
+              <th>Leading order coupling form</th>
+              <th>Classification basis</th>
+            </tr>
+          </thead>
+          <tbody id="materialRows"></tbody>
+        </table>
+        <div class="pagination" id="pagination" aria-label="Material table pagination"></div>
+      </section>
+
+      <section class="reference-band">
+        <h2>32 Point Group Classification</h2>
+        <p>
+          Full crystallographic point-group map classified as linear piezochiral,
+          non-piezochiral, or higher-order piezochiral.
+        </p>
+        <div class="class-legend" aria-label="Classification legend">
+          <span class="legend-item linear">Linear piezochiral</span>
+          <span class="legend-item higher">Higher-order piezochiral</span>
+          <span class="legend-item non">Non-piezochiral</span>
+        </div>
+        <div class="class-grid" id="classGrid"></div>
+      </section>
+
+      <footer class="site-footer" aria-label="Data acknowledgement">
+        <div class="citation-block">
+          <h2>Citation and Related Publication</h2>
+          <p>
+            The PiezoChiral Materials Database is based on the first work introducing the
+            piezochiral effect and establishing the symmetry classification of piezochiral materials:
+          </p>
+          <p>
+            Z. Zeng, M. Först, M. Fechner, X. Deng, A. Cavalleri, and P. G. Radaelli<br />
+            <strong>The Piezochiral Effect</strong><br />
+            <a href="https://doi.org/10.48550/arXiv.2510.21674" target="_blank" rel="noopener noreferrer">
+              DOI: 10.48550/arXiv.2510.21674
+            </a>
+          </p>
+          <p>Please cite this work when using data or classifications from this database.</p>
+        </div>
+        <span>Materials data sourced from</span>
+        <a href="https://materialsproject.org/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/materials-project-logo.svg" alt="Materials Project" />
+        </a>
+      </footer>
+    </main>
+
+    <script src="mp-materials.js"></script>
+    <script src="app.js?v=25rows"></script>
+  </body>
+</html>

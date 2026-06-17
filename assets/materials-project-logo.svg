@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" role="img" aria-labelledby="title">
+  <title id="title">Materials Project</title>
+  <rect width="320" height="72" rx="10" fill="#ffffff"/>
+  <g transform="translate(18 13)">
+    <path d="M23 0 43 11.5v23L23 46 3 34.5v-23L23 0Z" fill="#1f77b4"/>
+    <path d="M23 8 36 15.5v15L23 38 10 30.5v-15L23 8Z" fill="#ffffff" opacity=".92"/>
+    <circle cx="23" cy="23" r="5.5" fill="#1f77b4"/>
+    <circle cx="10" cy="15.5" r="3.2" fill="#1f77b4"/>
+    <circle cx="36" cy="15.5" r="3.2" fill="#1f77b4"/>
+    <circle cx="10" cy="30.5" r="3.2" fill="#1f77b4"/>
+    <circle cx="36" cy="30.5" r="3.2" fill="#1f77b4"/>
+  </g>
+  <text x="76" y="31" fill="#1f2937" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">Materials Project</text>
+  <text x="76" y="52" fill="#667085" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="600">materialsproject.org</text>
+</svg>
