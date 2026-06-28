@@ -72,7 +72,7 @@ def fetch_materials(api_key: str, limit: int | None = None):
             continue
 
         theoretical = get_attr_or_key(doc, "theoretical")
-        synthesis = "unknown"
+        synthesis = "experimental"
         if theoretical is False:
             synthesis = "experimental"
         elif theoretical is True:

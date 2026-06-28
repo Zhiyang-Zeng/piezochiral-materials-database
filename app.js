@@ -643,7 +643,7 @@ function materialFromImportedRecord(record) {
     spaceGroup: spaceGroup.symbol,
     order: pointGroup.order,
     evidence: "symmetry",
-    synthesis: record.synthesis || (record.theoretical === false ? "experimental" : record.theoretical === true ? "theoretical" : "unknown"),
+    synthesis: record.synthesis || (record.theoretical === false ? "experimental" : record.theoretical === true ? "theoretical" : "experimental"),
     tensor: pointGroup.form,
     source: "materials-project",
     note: "Imported from Materials Project and deduplicated by formula and space group."
@@ -805,14 +805,14 @@ function evidenceLabel(evidence) {
 function synthesisStatus(item) {
   if (item.synthesis === "experimental") return "experimental";
   if (item.synthesis === "theoretical") return "theoretical";
-  return "unknown";
+  return "experimental";
 }
 
 function synthesisLabel(item) {
   const status = synthesisStatus(item);
   if (status === "experimental") return "Experimentally reported";
   if (status === "theoretical") return "Theoretical only";
-  return "Not specified";
+  return "Experimentally reported";
 }
 
 function badgeClass(entry) {
