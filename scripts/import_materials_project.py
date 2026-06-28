@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Import formula and space-group data from Materials Project.
+"""Import formula, space-group, and synthesis-status data from Materials Project.
 
 Usage:
   MP_API_KEY=your_key python3 scripts/import_materials_project.py
 
 The output is ../mp-materials.js, which the static website loads before app.js.
 Records are deduplicated by normalized formula and normalized space-group symbol.
+If any duplicate record is experimentally reported, the deduplicated record is
+marked as experimentally reported.
 """
 
 from __future__ import annotations
@@ -50,7 +52,7 @@ def fetch_materials(api_key: str, limit: int | None = None):
             "Missing mp-api. Install it with: python3 -m pip install mp-api"
         ) from exc
 
-    fields = ["material_id", "formula_pretty", "symmetry"]
+    fields = ["material_id", "formula_pretty", "symmetry", "theoretical"]
     with MPRester(api_key) as mpr:
         docs = mpr.materials.summary.search(
             deprecated=False,
@@ -69,13 +71,23 @@ def fetch_materials(api_key: str, limit: int | None = None):
         if not formula or not space_group:
             continue
 
+        theoretical = get_attr_or_key(doc, "theoretical")
+        synthesis = "unknown"
+        if theoretical is False:
+            synthesis = "experimental"
+        elif theoretical is True:
+            synthesis = "theoretical"
+
         key = (formula, space_group)
         if key in deduped:
+            if synthesis == "experimental":
+                deduped[key]["synthesis"] = "experimental"
             continue
 
         deduped[key] = {
             "formula": formula,
             "spaceGroup": space_group,
+            "synthesis": synthesis,
         }
         if limit and len(deduped) >= limit:
             break

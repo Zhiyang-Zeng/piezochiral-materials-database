@@ -106,6 +106,15 @@
               <option value="nonchiral">Statically nonchiral</option>
             </select>
           </label>
+          <label>
+            Synthesis status
+            <select id="synthesisFilter">
+              <option value="all">All</option>
+              <option value="experimental">Experimentally reported</option>
+              <option value="theoretical">Theoretical only</option>
+              <option value="unknown">Not specified</option>
+            </select>
+          </label>
         </div>
       </section>
 
@@ -117,6 +126,7 @@
               <th>Point group</th>
               <th>Space group</th>
               <th>Static chirality</th>
+              <th>Synthesis status</th>
               <th>Piezochiral response</th>
               <th>Leading order coupling form</th>
               <th>Classification basis</th>
@@ -171,7 +181,7 @@
       </footer>
     </main>
 
-    <script src="mp-materials.js"></script>
-    <script src="app.js?v=static-chirality"></script>
+    <script src="mp-materials.js?v=synthesis-status"></script>
+    <script src="app.js?v=synthesis-status"></script>
   </body>
 </html>

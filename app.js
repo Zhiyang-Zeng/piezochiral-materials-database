@@ -643,19 +643,25 @@ function materialFromImportedRecord(record) {
     spaceGroup: spaceGroup.symbol,
     order: pointGroup.order,
     evidence: "symmetry",
+    synthesis: record.synthesis || (record.theoretical === false ? "experimental" : record.theoretical === true ? "theoretical" : "unknown"),
     tensor: pointGroup.form,
     source: "materials-project",
     note: "Imported from Materials Project and deduplicated by formula and space group."
   };
 }
 
-const importedMaterialKeys = new Set(materials.map((item) => `${item.formula}::${item.spaceGroup}`));
+const existingMaterialsByKey = new Map(materials.map((item) => [`${item.formula}::${item.spaceGroup}`, item]));
+const importedMaterialKeys = new Set(existingMaterialsByKey.keys());
 const importedMaterials = (window.materialsProjectMaterials || [])
   .map(materialFromImportedRecord)
   .filter(Boolean)
   .filter((item) => {
     const key = `${item.formula}::${item.spaceGroup}`;
-    if (importedMaterialKeys.has(key)) return false;
+    if (importedMaterialKeys.has(key)) {
+      const existing = existingMaterialsByKey.get(key);
+      if (existing && !existing.synthesis) existing.synthesis = item.synthesis;
+      return false;
+    }
     importedMaterialKeys.add(key);
     return true;
   });
@@ -692,6 +698,7 @@ const materialRows = document.querySelector("#materialRows");
 const orderFilter = document.querySelector("#orderFilter");
 const evidenceFilter = document.querySelector("#evidenceFilter");
 const chiralityFilter = document.querySelector("#chiralityFilter");
+const synthesisFilter = document.querySelector("#synthesisFilter");
 const pointGroupSelect = document.querySelector("#pointGroupSelect");
 const spaceGroupSelect = document.querySelector("#spaceGroupSelect");
 const activeGroupFilter = document.querySelector("#activeGroupFilter");
@@ -795,6 +802,19 @@ function evidenceLabel(evidence) {
   return evidence;
 }
 
+function synthesisStatus(item) {
+  if (item.synthesis === "experimental") return "experimental";
+  if (item.synthesis === "theoretical") return "theoretical";
+  return "unknown";
+}
+
+function synthesisLabel(item) {
+  const status = synthesisStatus(item);
+  if (status === "experimental") return "Experimentally reported";
+  if (status === "theoretical") return "Theoretical only";
+  return "Not specified";
+}
+
 function badgeClass(entry) {
   if (entry.supports) return "yes";
   if (entry.category === "chiral") return "neutral";
@@ -895,16 +915,18 @@ function renderMaterials() {
   const order = orderFilter.value;
   const evidence = evidenceFilter.value;
   const chirality = chiralityFilter.value;
+  const synthesis = synthesisFilter.value;
   const visible = materials.filter((item) => {
     const orderMatches = order === "all"
       || item.order === order
       || (order === "linear" && item.order === "linear-chiral");
     const evidenceMatches = evidence === "all" || item.evidence === evidence;
     const chiralityMatches = chirality === "all" || materialStaticChirality(item) === chirality;
+    const synthesisMatches = synthesis === "all" || synthesisStatus(item) === synthesis;
     const groupMatches = !groupFilter
       || (groupFilter.type === "point" && item.pointGroup === groupFilter.value)
       || (groupFilter.type === "space" && normalize(item.spaceGroup) === groupFilter.value);
-    return orderMatches && evidenceMatches && chiralityMatches && groupMatches;
+    return orderMatches && evidenceMatches && chiralityMatches && synthesisMatches && groupMatches;
   });
 
   const pageCount = Math.max(1, Math.ceil(visible.length / rowsPerPage));
@@ -921,13 +943,14 @@ function renderMaterials() {
       <td>${item.pointGroup}</td>
       <td>${item.spaceGroup}</td>
       <td>${materialStaticChiralityLabel(item)}</td>
+      <td>${synthesisLabel(item)}</td>
       <td>${responseLabel(item.order)}</td>
       <td>${item.tensor}</td>
       <td><span class="badge neutral">${evidenceLabel(item.evidence)}</span></td>
     </tr>
   `).join("") : `
     <tr>
-      <td colspan="7" class="empty-row">No material records match these filters yet.</td>
+      <td colspan="8" class="empty-row">No material records match these filters yet.</td>
     </tr>
   `;
   renderPagination(pageCount);
@@ -1110,6 +1133,11 @@ evidenceFilter.addEventListener("change", () => {
 });
 
 chiralityFilter.addEventListener("change", () => {
+  currentPage = 1;
+  renderMaterials();
+});
+
+synthesisFilter.addEventListener("change", () => {
   currentPage = 1;
   renderMaterials();
 });
