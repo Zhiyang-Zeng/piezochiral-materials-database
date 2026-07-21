@@ -695,8 +695,9 @@ symmetryClasses.forEach((entry) => {
 const queryInput = document.querySelector("#query");
 const lookupResult = document.querySelector("#lookupResult");
 const materialRows = document.querySelector("#materialRows");
+const elementFilter = document.querySelector("#elementFilter");
+const elementCountFilter = document.querySelector("#elementCountFilter");
 const orderFilter = document.querySelector("#orderFilter");
-const evidenceFilter = document.querySelector("#evidenceFilter");
 const chiralityFilter = document.querySelector("#chiralityFilter");
 const synthesisFilter = document.querySelector("#synthesisFilter");
 const pointGroupSelect = document.querySelector("#pointGroupSelect");
@@ -711,6 +712,21 @@ let groupFilter = null;
 let currentPage = 1;
 const rowsPerPage = 25;
 const pagination = document.querySelector("#pagination");
+const elementSymbols = new Set([
+  "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne",
+  "Na", "Mg", "Al", "Si", "P", "S", "Cl", "Ar", "K", "Ca",
+  "Sc", "Ti", "V", "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn",
+  "Ga", "Ge", "As", "Se", "Br", "Kr", "Rb", "Sr", "Y", "Zr",
+  "Nb", "Mo", "Tc", "Ru", "Rh", "Pd", "Ag", "Cd", "In", "Sn",
+  "Sb", "Te", "I", "Xe", "Cs", "Ba", "La", "Ce", "Pr", "Nd",
+  "Pm", "Sm", "Eu", "Gd", "Tb", "Dy", "Ho", "Er", "Tm", "Yb",
+  "Lu", "Hf", "Ta", "W", "Re", "Os", "Ir", "Pt", "Au", "Hg",
+  "Tl", "Pb", "Bi", "Po", "At", "Rn", "Fr", "Ra", "Ac", "Th",
+  "Pa", "U", "Np", "Pu", "Am", "Cm", "Bk", "Cf", "Es", "Fm",
+  "Md", "No", "Lr", "Rf", "Db", "Sg", "Bh", "Hs", "Mt", "Ds",
+  "Rg", "Cn", "Nh", "Fl", "Mc", "Lv", "Ts", "Og"
+]);
+const formulaElementCache = new Map();
 
 function normalize(value) {
   return String(value)
@@ -724,6 +740,40 @@ function normalize(value) {
     .replaceAll("₃", "3")
     .replaceAll("₄", "4")
     .replaceAll("₆", "6");
+}
+
+function canonicalElementSymbol(value) {
+  if (!value) return "";
+  return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+}
+
+function formulaElements(formula) {
+  const key = String(formula || "");
+  if (formulaElementCache.has(key)) return formulaElementCache.get(key);
+  const elements = [...key.matchAll(/[A-Z][a-z]?/g)]
+    .map((match) => match[0])
+    .filter((symbol) => elementSymbols.has(symbol));
+  const unique = [...new Set(elements)];
+  formulaElementCache.set(key, unique);
+  return unique;
+}
+
+function parseElementFilter(value) {
+  const text = String(value || "").trim();
+  if (!text) return [];
+  const hasSeparators = /[\s,;+]/.test(text);
+  const tokens = hasSeparators
+    ? text.split(/[\s,;+]+/).filter(Boolean)
+    : [...text.matchAll(/[A-Z][a-z]?|[a-z]{1,2}/g)].map((match) => match[0]);
+  return [...new Set(tokens.map(canonicalElementSymbol))]
+    .filter(Boolean)
+    .map((symbol) => elementSymbols.has(symbol) ? symbol : "__invalid__");
+}
+
+function elementCountMatches(count, filterValue) {
+  if (filterValue === "all") return true;
+  if (filterValue === "6plus") return count >= 6;
+  return count === Number(filterValue);
 }
 
 function findClass(query) {
@@ -794,12 +844,6 @@ function materialStaticChirality(item) {
 
 function materialStaticChiralityLabel(item) {
   return materialStaticChirality(item) === "chiral" ? "Yes" : "No";
-}
-
-function evidenceLabel(evidence) {
-  if (evidence === "experiment") return "Experimentally confirmed";
-  if (evidence === "symmetry") return "Symmetry-based";
-  return evidence;
 }
 
 function synthesisStatus(item) {
@@ -912,21 +956,24 @@ function renderLookup(query, options = {}) {
 }
 
 function renderMaterials() {
+  const requiredElements = parseElementFilter(elementFilter.value);
+  const elementCount = elementCountFilter.value;
   const order = orderFilter.value;
-  const evidence = evidenceFilter.value;
   const chirality = chiralityFilter.value;
   const synthesis = synthesisFilter.value;
   const visible = materials.filter((item) => {
+    const itemElements = formulaElements(item.formula);
+    const elementsMatch = requiredElements.every((symbol) => itemElements.includes(symbol));
+    const elementCountMatch = elementCountMatches(itemElements.length, elementCount);
     const orderMatches = order === "all"
       || item.order === order
       || (order === "linear" && item.order === "linear-chiral");
-    const evidenceMatches = evidence === "all" || item.evidence === evidence;
     const chiralityMatches = chirality === "all" || materialStaticChirality(item) === chirality;
     const synthesisMatches = synthesis === "all" || synthesisStatus(item) === synthesis;
     const groupMatches = !groupFilter
       || (groupFilter.type === "point" && item.pointGroup === groupFilter.value)
       || (groupFilter.type === "space" && normalize(item.spaceGroup) === groupFilter.value);
-    return orderMatches && evidenceMatches && chiralityMatches && synthesisMatches && groupMatches;
+    return elementsMatch && elementCountMatch && orderMatches && chiralityMatches && synthesisMatches && groupMatches;
   });
 
   const pageCount = Math.max(1, Math.ceil(visible.length / rowsPerPage));
@@ -946,11 +993,10 @@ function renderMaterials() {
       <td>${synthesisLabel(item)}</td>
       <td>${responseLabel(item.order)}</td>
       <td>${item.tensor}</td>
-      <td><span class="badge neutral">${evidenceLabel(item.evidence)}</span></td>
     </tr>
   `).join("") : `
     <tr>
-      <td colspan="8" class="empty-row">No material records match these filters yet.</td>
+      <td colspan="7" class="empty-row">No material records match these filters yet.</td>
     </tr>
   `;
   renderPagination(pageCount);
@@ -1122,12 +1168,17 @@ pagination.addEventListener("submit", (event) => {
   renderMaterials();
 });
 
-orderFilter.addEventListener("change", () => {
+elementFilter.addEventListener("input", () => {
   currentPage = 1;
   renderMaterials();
 });
 
-evidenceFilter.addEventListener("change", () => {
+elementCountFilter.addEventListener("change", () => {
+  currentPage = 1;
+  renderMaterials();
+});
+
+orderFilter.addEventListener("change", () => {
   currentPage = 1;
   renderMaterials();
 });
