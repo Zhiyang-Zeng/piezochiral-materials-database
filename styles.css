@@ -575,27 +575,6 @@ td:first-child {
   font-weight: 800;
 }
 
-.citation-figure {
-  margin: 18px auto 0;
-  width: min(720px, 100%);
-}
-
-.citation-figure img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-}
-
-.citation-figure figcaption {
-  margin-top: 8px;
-  color: var(--ink);
-  font-size: 0.95rem;
-  font-weight: 800;
-}
-
 .site-footer a {
   display: inline-flex;
   align-items: center;

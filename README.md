@@ -20,7 +20,7 @@ The database is based on the first theoretical framework establishing the piezoc
 
 > Z. Zeng, M. Först, M. Fechner, X. Deng, A. Cavalleri, and P. G. Radaelli
 > **The Piezochiral Effect**
-> DOI: https://doi.org/10.48550/arXiv.2510.21674
+> DOI: https://doi.org/10.1038/s41586-026-10845-5
 
 This work derives the symmetry conditions under which mechanical strain can induce chirality and identifies the crystallographic point groups that support piezochiral coupling.
 
@@ -33,6 +33,6 @@ If you use this database, its classifications, or any derived datasets in your r
   author = {Zeng, Zhiyang and Först, Michael and Fechner, Michael and Deng, Xiaoxi and Cavalleri, Andrea and Radaelli, Paolo G.},
   title = {The Piezochiral Effect},
   year = {2025},
-  doi = {10.48550/arXiv.2510.21674}
+  doi = {10.1038/s41586-026-10845-5}
 }
 ```
